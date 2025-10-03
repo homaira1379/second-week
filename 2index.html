@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic Dreams - Your Premier Movie Theater Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS Variables
+           ======================================== */
+        :root {
+            --primary-red: #e50914;
+            --dark-bg: #141414;
+            --card-bg: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --border-radius: 8px;
+            --transition-speed: 0.3s;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 16px rgba(229, 9, 20, 0.4);
+        }
+
+        /* ========================================
+           Reset & Base Styles
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========================================
+           Header & Navigation
+           ======================================== */
+        header {
+            background-color: rgba(20, 20, 20, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .theater-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-list a {
+            color: var(--text-primary);
+            font-weight: 400;
+            transition: color var(--transition-speed);
+            position: relative;
+        }
+
+        .nav-list a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-list a:hover {
+            color: var(--primary-red);
+        }
+
+        .nav-list a:hover::after {
+            width: 100%;
+        }
+
+        /* ========================================
+           Hero Section
+           ======================================== */
+        .hero {
+            background: linear-gradient(rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.9)),
+                        url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&h=900&fit=crop') center/cover;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           Buttons
+           ======================================== */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--text-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background-color: #b20710;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 25px;
+            font-size: 0.9rem;
+        }
+
+        /* ========================================
+           Now Showing Section
+           ======================================== */
+        .now-showing {
+            padding: 80px 0;
+            background-color: var(--dark-bg);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-red);
+        }
+
+        .movie-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .movie-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            flex: 1 1 300px;
+            max-width: 350px;
+            box-shadow: var(--shadow);
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+
+        .movie-card:hover .movie-poster img {
+            transform: scale(1.1);
+        }
+
+        .movie-info {
+            padding: 20px;
+        }
+
+        .movie-info h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .movie-description {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .movie-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .movie-meta span {
+            background-color: var(--dark-bg);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .rating {
+            background-color: var(--primary-red) !important;
+            color: var(--text-primary) !important;
+            font-weight: 700;
+        }
+
+        /* ========================================
+           About Section
+           ======================================== */
+        .about {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1 1 400px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .location-info {
+            flex: 1 1 300px;
+            background-color: var(--dark-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .location-info h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-red);
+            letter-spacing: 1px;
+        }
+
+        .location-info p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .location-info strong {
+            color: var(--text-primary);
+        }
+
+        /* ========================================
+           Footer
+           ======================================== */
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--card-bg);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        /* ========================================
+           Media Queries - Responsive Design
+           ======================================== */
+
+        /* Tablets and smaller laptops */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .theater-logo {
+                font-size: 1.8rem;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .movie-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .movie-card {
+                max-width: 100%;
+                flex: 1 1 100%;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Mobile devices */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .theater-logo {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 40px 15px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .now-showing,
+            .about {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .movie-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+
+            .location-info {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="theater-logo">Cinematic Dreams</h1>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#now-showing">Now Showing</a></li>
+                    <li><a href="#showtimes">Showtimes</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2 class="hero-title">Experience Cinema Like Never Before</h2>
+            <p class="hero-subtitle">Premium sound, stunning visuals, ultimate comfort</p>
+            <div class="hero-buttons">
+                <a href="#now-showing" class="btn btn-primary">See Showtimes</a>
+                <a href="#contact" class="btn btn-secondary">Book Tickets</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="now-showing" id="now-showing">
+        <div class="container">
+            <h2 class="section-title">Now Showing</h2>
+            <div class="movie-grid">
+                <article class="movie-card">
+                    <div class="movie-poster">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop" alt="Stellar Odyssey movie poster">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Stellar Odyssey</h3>
+                        <p class="movie-description">A breathtaking journey through the cosmos as a crew discovers an ancient alien civilization that holds the key to humanity's future.</p>
+                        <div class="movie-meta">
+                            <span class="rating">PG-13</span>
+                            <span class="genre">Sci-Fi</span>
+                            <span class="duration">2h 28m</span>
+                        </div>
+                        <a href="#" class="btn btn-small">Get Tickets</a>
+                    </div>
+                </article>
+
+                <article class="movie-card">
+                    <div class="movie-poster">
+                        <img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=400&h=600&fit=crop" alt="Midnight Whispers movie poster">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Midnight Whispers</h3>
+                        <p class="movie-description">A psychological thriller where a detective must solve a series of mysterious disappearances before becoming the next victim.</p>
+                        <div class="movie-meta">
+                            <span class="rating">R</span>
+                            <span class="genre">Thriller</span>
+                            <span class="duration">1h 52m</span>
+                        </div>
+                        <a href="#" class="btn btn-small">Get Tickets</a>
+                    </div>
+                </article>
+
+                <article class="movie-card">
+                    <div class="movie-poster">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=600&fit=crop" alt="Summer Hearts movie poster">
+                    </div>
+                    <div class="movie-info">
+                        <h3>Summer Hearts</h3>
+                        <p class="movie-description">A heartwarming romantic comedy about two strangers who meet on a road trip and discover that sometimes the best destinations are unplanned.</p>
+                        <div class="movie-meta">
+                            <span class="rating">PG</span>
+                            <span class="genre">Romance</span>
+                            <span class="duration">1h 45m</span>
+                        </div>
+                        <a href="#" class="btn btn-small">Get Tickets</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Cinematic Dreams</h2>
+                    <p>Welcome to Cinematic Dreams, where movie magic comes to life. Since 1995, we've been dedicated to providing the ultimate cinematic experience with state-of-the-art projection, immersive surround sound, and luxurious seating.</p>
+                    <p>Our passion is bringing stories to the big screen in a way that captivates and inspires. Join us for an unforgettable movie experience.</p>
+                </div>
+                <div class="location-info">
+                    <h3>Visit Us</h3>
+                    <p><strong>Address:</strong><br>
+                    123 Cinema Boulevard<br>
+                    Hollywood District<br>
+                    Los Angeles, CA 90028</p>
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                    <p><strong>Email:</strong> info@cinematicdreams.com</p>
+                    <p><strong>Hours:</strong><br>
+                    Mon-Thu: 12:00 PM - 11:00 PM<br>
+                    Fri-Sun: 10:00 AM - 1:00 AM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Cinematic Dreams Theater. All rights reserved.</p>
+            <p>Experience the magic of cinema.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
